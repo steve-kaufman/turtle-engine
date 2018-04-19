@@ -1,47 +1,48 @@
-var Camera = function(){
-	this.x = 0;
-	this.y = 0;
-	this.z = 0;
+var Camera = {
+	x : 0,
+	y : 0,
+    
+	scale : 0,
 	
-	this.vectorX = 0;
-	this.vectorY = 0;
+	vectorX : 0,
+	vectorY : 0,
 	
-	this.speed = 5;
+	speed : 5,
 	
-	this.tick = function(){
+	tick : function(){
 		this.x += this.vectorX * this.speed;
 		this.y += this.vectorY * this.speed;
-	}
+	},
   
-  this.getX = function(){
-    return this.x;
-  }
-  
-  this.getY = function(){
-    return this.y;
-  }
-  
-  this.getZ = function(){
-    return this.z;
-  }
-  
-  this.setX = function(x){
-    this.x = x;
-  }
-  
-  this.setY = function(y){
-    this.y = y;
-  }
-  
-  this.setZ = function(z){
-    this.z = z;
-  }
-  
-  this.setVelX = function(vel){
-    this.vectorX = vel;
-  }
-  
-  this.setVelY = function(vel){
-    this.vectorY = vel;
-  }
-}
+    getX : function(){
+        return this.x;
+    },
+
+    getY : function(){
+        return this.y;
+    },
+
+    getScale : function(){
+        return this.scale;
+    },
+
+    setX : function(x){
+        this.x = x;
+    },
+
+    setY : function(y){
+        this.y = y;
+    },
+
+    setScale : function(scale){
+        this.scale = scale;
+    },
+
+    setVelX : function(vel){
+        this.vectorX = vel;
+    },
+
+    setVelY : function(vel){
+        this.vectorY = vel;
+    }
+};
