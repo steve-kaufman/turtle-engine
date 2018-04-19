@@ -1,19 +1,19 @@
 var Camera = {
-	x : 0,
-	y : 0,
-    
-	scale : 0,
-	
-	vectorX : 0,
-	vectorY : 0,
-	
-	speed : 5,
-	
-	tick : function(){
-		this.x += this.vectorX * this.speed;
-		this.y += this.vectorY * this.speed;
-	},
-  
+    x : 0,
+    y : 0,
+
+    scale : 0,
+
+    vectorX : 0,
+    vectorY : 0,
+
+    speed : 5,
+
+    tick : function(){
+        this.x += this.vectorX * this.speed;
+        this.y += this.vectorY * this.speed;
+    },
+
     getX : function(){
         return this.x;
     },
