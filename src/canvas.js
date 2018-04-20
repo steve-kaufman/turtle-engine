@@ -12,6 +12,7 @@ var Canvas = {
         this.canvas.top = y;
         this.canvas.width = width;
         this.canvas.height = height;
+        document.body.insertBefore(this.canvas, null);
         
         this.ctx = this.canvas.getContext('2d');
         this.ctx.clear = function(){
@@ -21,5 +22,21 @@ var Canvas = {
         this.canvas.ctx = this.ctx;
         
         return this.canvas;
+    }
+};
+
+var Render = {
+    framerate : 30,
+    flag : false,
+    start : function(){
+        this.run();
+    },
+    stop : function(){
+        this.flag = true;
+    },
+    
+    run : function(){
+        if(window.render) window.render();
+        if(!Render.flag) setTimeout(Render.run, 1000 / Render.framerate);
     }
 };
