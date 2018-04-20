@@ -13,10 +13,10 @@ let mainWindow
 
 function createWindow () {
   // Create the browser window.
-  var width = 1080;//electron.screen.getPrimaryDisplay().bounds.width;
+  var width = electron.screen.getPrimaryDisplay().bounds.width;
     width = 16 * Math.round(width / 24);
     console.log(width);
-  var height = 720;//electron.screen.getPrimaryDisplay().bounds.height;
+  var height = electron.screen.getPrimaryDisplay().bounds.height;
     height = 16 * Math.round(height / 24);
     console.log(height);
   mainWindow = new BrowserWindow({width : width, height : height, resizable : false})
