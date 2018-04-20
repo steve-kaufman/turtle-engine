@@ -1,6 +1,6 @@
 # turtle-engine
 
-This is a two dimensional game engine that utilizes matter.js (liabru/matter-js), HTML5 canvas, and the Electron npm library.
+This is a two dimensional javascript game engine that utilizes matter.js (liabru/matter-js), HTML5 canvas, and the Electron npm library.
 
 In order to use this game engine, clone the repository, and run
 
