@@ -16,10 +16,11 @@ var Canvas = {
         
         this.ctx = this.canvas.getContext('2d');
         this.ctx.clear = function(){
-            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            this.clearRect(0, 0, this.canvas.width, this.canvas.height);
         }
         
         this.canvas.ctx = this.ctx;
+        this.ctx.canvas = this.canvas;
         
         return this.canvas;
     }

@@ -6,7 +6,6 @@ function Sprite(filepath){
     var self = this;
     
     function load(){
-        console.log(self.img.width);
         self.image.width = self.img.width;
         self.image.height = self.img.height;
         self.image.getContext('2d').drawImage(self.img, 0, 0);
@@ -54,11 +53,12 @@ function Sprite(filepath){
         y = y || 0;
         width = width || this.img.width;
         height = height || this.img.width;
+        canvas = canvas || Canvas.canvas;
         
         canvas.ctx.save();
         canvas.ctx.translate(x + width / 2, y + height / 2);
-        canvas.ctx.rotate(angle / (Math.PI * 180));
-        var args = [x - width / 2, y - height / 2, width, height, canvas];
+        canvas.ctx.rotate(angle * (Math.PI / 180));
+        var args = [-(width / 2), -(height / 2), width, height, canvas];
         if(isPattern) this.drawPattern.apply(this, args);
         else this.draw.apply(this, args);
         canvas.ctx.restore();

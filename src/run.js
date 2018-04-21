@@ -2,6 +2,7 @@ var Render = {
     framerate : 30,
     running : false,
     start : function(){
+        this.running = true;
         this.run();
     },
     stop : function(){
@@ -16,8 +17,9 @@ var Render = {
 
 var Update = {
     framerate : 30,
-    running : true,
+    running : false,
     start : function(){
+        this.running = true;
         this.run();
     },
     stop : function(){
