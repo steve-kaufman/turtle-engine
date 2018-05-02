@@ -145,7 +145,7 @@ function Entity(x, y, width, height, options){
     this.sprite = null;
     this.canvas = Canvas.canvas;
     this.render = function(isPattern){
-        this.sprite.drawAngled(
+        if(this.sprite) this.sprite.drawAngled(
             this.physical.angle / (Math.PI / 180), this.x, this.y, 
             this.width, this.height, this.canvas, isPattern
             );
