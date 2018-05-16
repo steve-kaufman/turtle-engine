@@ -4,6 +4,9 @@ https://github.com/tertelgames/turtle-engine
 License MIT
 *****/
 
+document.body.style.overflow = 'hidden';
+document.body.style.margin = 0;
+
     /**
     * matter-js 0.14.1 by @liabru 2018-01-10
     * http://brm.io/matter-js/
@@ -99,6 +102,39 @@ License MIT
 var engine = Matter.Engine.create();
 Matter.Engine.run(engine);
 
+var IO = {
+    currentPressed : null,
+    lastPressed : null,
+    tapped : null,
+    keys : {},
+    isPressed : function(key){
+        if(this.keys[key]) return(true);
+    },
+    wasPressed : function(key){
+        if(this.lastPressed == key) return(true);
+    },
+    keyTapped : function(key){
+        if(this.tapped == key) return(true);
+    }
+};
+document.addEventListener('keydown', function(e){
+    var key = e.keyCode;
+    if(key != IO.currentPressed){
+        IO.tapped = key;
+        IO.currentPressed = key;
+        IO.lastPressed = key;
+    }
+    
+    if(!IO.keys[key]) IO.keys[key] = true;
+});
+document.addEventListener('keyup', function(e){
+    var key = e.keyCode;
+    if(key == IO.currentPressed){
+        IO.currentPressed = null;
+    }
+    if(IO.keys[key]) IO.keys[key] = false;
+});
+
 var Canvas = {
     canvas : null,
     ctx : null,
@@ -114,6 +150,7 @@ var Canvas = {
         this.canvas.width = width;
         this.canvas.height = height;
         document.body.insertBefore(this.canvas, null);
+        this.canvas.style.position = 'absolute';
         
         this.ctx = this.canvas.getContext('2d');
         this.ctx.clear = function(){
@@ -149,6 +186,14 @@ function Entity(x, y, width, height, options){
             this.physical.angle / (Math.PI / 180), this.x, this.y, 
             this.width, this.height, this.canvas, isPattern
             );
+        else if (this.canvas){
+            this.canvas.ctx.save();
+            this.canvas.ctx.strokeStyle = 'black';
+            this.canvas.ctx.strokeRect(
+                this.x, this.y, this.width, this.height
+            );
+            this.canvas.ctx.restore();
+        }
     };
 
     this.rotates = false;
@@ -231,6 +276,7 @@ var Render = {
     running : false,
     start : function(){
         this.running = true;
+        if(renderInit) renderInit();
         this.run();
     },
     stop : function(){
@@ -256,6 +302,7 @@ var Update = {
     
     run : function(){
         if(window.update) window.update();
+        if(IO.tapped) IO.tapped = null;
         if(Update.running) setTimeout(Update.run, 1000 / Update.framerate);
     }
 };
